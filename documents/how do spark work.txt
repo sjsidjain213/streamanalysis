@@ -1,0 +1,52 @@
+At the highest level spark have functions which give us access to RDD's 
+RDD is the main abstraction which spark provides. Second level of abstraction is Shared Variables.
+
+1. Abstraction in Spark
+	So What is RDD?
+	A Resilient Distributed Dataset (RDD), the basic abstraction in Spark, represents an immutable, partitioned collection
+	 of elements that can be operated on in parallel.
+
+		Resilient
+		Meaning it provides fault tolerance through lineage graph. A lineage graph keeps a track of transformations 
+		to be executed after an action has been called. RDD lineage graph helps recomputed any missing or damaged 
+		partitions because of node failures.
+		
+		Distributed
+		RDDs are distributed - meaning the data is present on multiple nodes in a cluster.
+		
+		Datasets
+		Collection of partitioned data with primitive values.
+	
+	RDD are:
+	1. Immutable: They read only abstraction and cannot be changed once created.
+	2. Paritioned: RDDs in Spark have collection of records that contain partitions. 
+				   RDDs in Spark are divided into small logical chunks of data - known as partitions, when an action 
+				   is executed, a task will be launched per partition.Partitions in RDDs are the basic units of parallelism
+	3. They are lazy evaluated, persisted and fault taulrent.
+	
+	Shared Variable in Spark:
+	A second abstraction in Spark is shared variables that can be used in parallel operations. 
+	By default, when Spark runs a function in parallel as a set of tasks on different nodes, it ships a copy 
+	of each variable used in the function to each task. Sometimes, a variable needs to be shared across tasks, 
+	or between tasks and the driver program. Spark supports two types of shared variables: broadcast variables, 
+	which can be used to cache a value in memory on all nodes, and accumulators, which are variables that are 
+	only “added” to, such as counters and sums.
+
+	
+2. External Dataset in Spark
+	So if you are using the underlying hdfs system then you do not have to worry about replication on worker node.
+	but what if we are reading from an external source then what will happend? 
+		In case of external dataset for example S3 or a .txt file the url/uri of the file should be accessible to all 
+		the worker node or copy the file on all the worker node in case of access issue	
+		
+3. RDD operations
+	Transformation and Action:
+	transformations, which create a new dataset from an existing one, and 
+	actions, which return a value to the driver program after running a computation on the dataset.
+	
+	All transformations in Spark are lazy, in that they do not compute their results right away. 
+	Instead, they just remember the transformations applied to some base dataset (e.g. a file). 
+	The transformations are only computed when an action requires a result to be returned to the driver program.
+	
+	If you want to use the same tranformation again then you can use persist methods to keet
+	the transformation stored across the cluster or you can store it in memory or disk

@@ -1,7 +1,11 @@
-##Spark References##
+ ##Spark References##
+ https://spark.apache.org/docs/2.2.0/rdd-programming-guide.html
 
-Internal Working of Spark
-https://stackoverflow.com/questions/30691385/internal-work-of-spark
+ #Internal Working of Spark#
+ https://stackoverflow.com/questions/30691385/internal-work-of-spark
 
-#For Understanding of Spark Working at physical level#
-https://jaceklaskowski.gitbooks.io/mastering-apache-spark/spark-DAGScheduler-Stage.html
+ #For Understanding of Spark Working at physical level#
+ https://jaceklaskowski.gitbooks.io/mastering-apache-spark/spark-DAGScheduler-Stage.html
+
+ #For Spark RDD working#
+ https://www.dezyre.com/article/working-with-spark-rdd-for-fast-data-processing/273
