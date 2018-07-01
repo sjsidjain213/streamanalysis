@@ -50,3 +50,47 @@ RDD is the main abstraction which spark provides. Second level of abstraction is
 	
 	If you want to use the same tranformation again then you can use persist methods to keet
 	the transformation stored across the cluster or you can store it in memory or disk
+
+4. Closures in Spark
+	Behavore of clouser is different in cluster mode and single node mode. For example if you are using global level
+	variable then it will behave different differently in local mode as it will be executed on a single JVM but
+	it will not be the case in cluster mode.
+	
+	What happens when program is executed on cluster?
+	Spark Driver ship the copy of the functions which is required to be executed on worker node which means if there
+	is some global variable then each worked node will have it's own copy of variable. Thus if you expecting 
+	to get an result of the variable showing some return result of all the worker node then it will not give the 
+	expected result. consider this example  
+		
+		int counter = 0;
+		JavaRDD<Integer> rdd = sc.parallelize(data);
+		
+		// Wrong: Don't do this!!
+		rdd.foreach(x -> counter += x);
+		
+		println("Counter value: " + counter);
+		
+	The behavior of the above code is undefined, and may not work as intended. 
+	To execute jobs, Spark breaks up the processing of RDD operations into tasks, each of which is executed by 
+	an executor. Prior to execution, Spark computes the task’s closure. The closure is those variables and 
+	methods which must be visible for the executor to perform its computations on the RDD (in this case foreach()). 
+	This closure is serialized and sent to each executor.
+
+	The variables within the closure sent to each executor are now copies and thus, 
+	when counter is referenced within the foreach function, it’s no longer the counter on the driver node. 
+	There is still a counter in the memory of the driver node but this is no longer visible to the executors!
+	The executors only see the copy from the serialized closure. 
+	Thus, the final value of counter will still be zero since all operations on counter were referencing 
+	the value within the serialized closure
+	
+	Use Accoumulator for such requirments
+	
+5. Shuffle in Spark
+	shuffle is the most costly operation in spark because it require the tranfer of data from one worker node to another
+	worker node. Best Example of such an operation is Map and Reduce where reduce to aggreagte the count which require
+	key with the same word to be on the same node.
+	Operations which can cause a shuffle include repartition operations like repartition and coalesce, 
+	‘ByKey operations (except for counting) like groupByKey and reduceByKey, and join operations like cogroup and join.
+
+6. Shared Variable and Accumulator
+	
