@@ -1,0 +1,7 @@
+##Spark References##
+
+Internal Working of Spark
+https://stackoverflow.com/questions/30691385/internal-work-of-spark
+
+#For Understanding of Spark Working at physical level#
+https://jaceklaskowski.gitbooks.io/mastering-apache-spark/spark-DAGScheduler-Stage.html
