@@ -1,14 +1,29 @@
  ##Spark References##
  https://spark.apache.org/docs/2.2.0/rdd-programming-guide.html
 
- #Internal Working of Spark#
- https://stackoverflow.com/questions/30691385/internal-work-of-spark
-
- #For Understanding of Spark Working at physical level#
- https://jaceklaskowski.gitbooks.io/mastering-apache-spark/spark-DAGScheduler-Stage.html
-
- #For Spark RDD working#
- https://www.dezyre.com/article/working-with-spark-rdd-for-fast-data-processing/273
+	 #Internal Working of Spark#
+	 https://stackoverflow.com/questions/30691385/internal-work-of-spark
+	
+	 #For Understanding of Spark Working at physical level#
+	 https://jaceklaskowski.gitbooks.io/mastering-apache-spark/spark-DAGScheduler-Stage.html
+	
+	 #For Spark RDD working#
+	 https://www.dezyre.com/article/working-with-spark-rdd-for-fast-data-processing/273
+	 
+	 #Java Function Interface API#
+	 https://spark.apache.org/docs/2.2.0/api/java/index.html?org/apache/spark/api/java/function/package-summary.html
  
- #Java Function Interface API#
- https://spark.apache.org/docs/2.2.0/api/java/index.html?org/apache/spark/api/java/function/package-summary.html
+ 
+ 
+ ###Java Functional Programming###
+ https://databricks.com/blog/2014/04/14/spark-with-java-8.html
+ https://spark.apache.org/docs/2.0.1/api/java/org/apache/spark/api/java/JavaPairRDD.html
+ 
+	 #anonymous inner class#
+	 https://www.geeksforgeeks.org/anonymous-inner-class-java/
+	 
+	 
+	 #functional interface java#
+	 https://www.geeksforgeeks.org/functional-interfaces-java/
+ 
+ 
