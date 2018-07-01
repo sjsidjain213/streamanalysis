@@ -2,7 +2,7 @@
 
 ##Overview##
 This project contains implementation of real time stream analysis using kafka and spark.   
-Sevrer logs are read, analyzed and stored in real time using kafka, spark and yarn
+Sever logs are read, analyzed and stored in real time using kafka, spark and yarn
 
 ### Tools and Programming Language Used ###
 Spark   
