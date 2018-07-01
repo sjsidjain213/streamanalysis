@@ -2,7 +2,7 @@ At the highest level spark have functions which give us access to RDD's
 RDD is the main abstraction which spark provides. Second level of abstraction is Shared Variables.
 
 1. Abstraction in Spark
-	So What is RDD?
+	1. So What is RDD?
 	A Resilient Distributed Dataset (RDD), the basic abstraction in Spark, represents an immutable, partitioned collection
 	 of elements that can be operated on in parallel.
 
@@ -23,15 +23,14 @@ RDD is the main abstraction which spark provides. Second level of abstraction is
 				   RDDs in Spark are divided into small logical chunks of data - known as partitions, when an action 
 				   is executed, a task will be launched per partition.Partitions in RDDs are the basic units of parallelism
 	3. They are lazy evaluated, persisted and fault taulrent.
-	
-	Shared Variable in Spark:
+
+	2. Shared Variable in Spark:
 	A second abstraction in Spark is shared variables that can be used in parallel operations. 
 	By default, when Spark runs a function in parallel as a set of tasks on different nodes, it ships a copy 
 	of each variable used in the function to each task. Sometimes, a variable needs to be shared across tasks, 
 	or between tasks and the driver program. Spark supports two types of shared variables: broadcast variables, 
 	which can be used to cache a value in memory on all nodes, and accumulators, which are variables that are 
 	only “added” to, such as counters and sums.
-
 	
 2. External Dataset in Spark
 	So if you are using the underlying hdfs system then you do not have to worry about replication on worker node.
@@ -94,3 +93,26 @@ RDD is the main abstraction which spark provides. Second level of abstraction is
 
 6. Shared Variable and Accumulator
 	
+	
+7. Stage: A physical Unit of Execution
+	
+	A stage is a set of parallel tasks — one task per partition (of an RDD that computes partial results of a 
+	function executed as part of a Spark job).
+	In other words, a Spark job is a computation with that computation sliced into stages.
+	
+	Stage is a physical representation of an RDD. Stage is divided into Task while RDD is divided into Partition
+	Each stage is uniquely identified with a key. 
+	
+	A stage can only work on the partitions of a single RDD (identified by rdd), but can be associated with many 
+	other dependent parent stages (via internal field parents), with the boundary of a stage marked by shuffle 
+	dependencies.
+	
+	There are two types of stages:
+	1. ShuffleMapStage: is an intermediate stage that produce data for other stage. It write output for a shuffle stage.
+	2. ResultStage: is final stage that execute a spark action in a user program.
+	
+	DAGScheduler splits up a job into a collection of stages. 
+	Each stage contains a sequence of narrow transformations that can be completed without shuffling the entire 
+	data set, separated at shuffle boundaries, i.e. where shuffle occurs. 
+	Stages are thus a result of breaking the RDD graph at shuffle boundaries.
+		
