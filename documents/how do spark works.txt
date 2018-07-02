@@ -111,11 +111,14 @@ RDD is the main abstraction which spark provides. Second level of abstraction is
 	Whole Code is divided into stages, condition for the putting the RDD in stage is it should not be dependent on other RDD.
 	So RDD which are like or which can be grouped together and they are not dependent on any other on going process can be put 
 	in same stage. 
+	
 ![task-schedule](images/task_scheduling.png)	
+
 	Then these stages are divided into task, task can be said as a whole bundle of work these task works on the parition of the
 	data. Suppose there is file name "Spark_is_easy.txt" and "Spark_is_easy2.txt" and we have a cluster of 2 nodes then let's assume 
 	both the file are available on a separate node then for same stage of process there will be 2 task
 	all nodes then 
+	
 ![shufflespark](images/shufflespark.png)
 	
 	There are two types of stages:
@@ -123,10 +126,15 @@ RDD is the main abstraction which spark provides. Second level of abstraction is
 	2. ResultStage: is final stage that execute a spark action in a user program.
 
 8. DAG Scheduler
+
 ![sparkexample](images/sparkexample1.PNG)
+
 ![sparkexample](images/sparkexample2.PNG)
+
 ![sparkexample](images/sparkexample3.PNG)
+
 ![sparkexample](images/sparkexample4.PNG)
+
 	DAGScheduler splits up a job into a collection of stages. 
 	Each stage contains a sequence of narrow transformations that can be completed without shuffling the entire 
 	data set, separated at shuffle boundaries, i.e. where shuffle occurs. 
