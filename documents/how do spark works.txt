@@ -107,6 +107,17 @@ RDD is the main abstraction which spark provides. Second level of abstraction is
 	other dependent parent stages (via internal field parents), with the boundary of a stage marked by shuffle 
 	dependencies.
 	
+	In Simple Words:
+	Whole Code is divided into stages, condition for the putting the RDD in stage is it should not be dependent on other RDD.
+	So RDD which are like or which can be grouped together and they are not dependent on any other on going process can be put 
+	in same stage. 
+![task-schedule](images/task_scheduling.png)	
+	Then these stages are divided into task, task can be said as a whole bundle of work these task works on the parition of the
+	data. Suppose there is file name "Spark_is_easy.txt" and "Spark_is_easy2.txt" and we have a cluster of 2 nodes then let's assume 
+	both the file are available on a separate node then for same stage of process there will be 2 task
+	all nodes then 
+![shufflespark](iamges/shufflespark.png)
+	
 	There are two types of stages:
 	1. ShuffleMapStage: is an intermediate stage that produce data for other stage. It write output for a shuffle stage.
 	2. ResultStage: is final stage that execute a spark action in a user program.

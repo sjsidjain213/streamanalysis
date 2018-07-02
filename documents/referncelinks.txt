@@ -13,7 +13,10 @@
 	 #Java Function Interface API#
 	 https://spark.apache.org/docs/2.2.0/api/java/index.html?org/apache/spark/api/java/function/package-summary.html
  
- 
+	##video references for spark##
+	https://www.youtube.com/watch?v=7ooZ4S7Ay6Y : Sameer Farooqui(Databricks) - detail insights
+	https://www.youtube.com/watch?v=dmL0N3qfSc8 : Aaron Davidson(Databricks) - DAG Scheduling and Partition,Staging Concepts
+	
  
  ###Java Functional Programming###
  https://databricks.com/blog/2014/04/14/spark-with-java-8.html
@@ -36,7 +39,6 @@
  
 	#how do kafka works#
 	https://www.cloudkarafka.com/blog/2016-11-30-part1-kafka-for-beginners-what-is-apache-kafka.html
-	
 	
 	
 	
