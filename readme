@@ -4,7 +4,7 @@
 This project contains implementation of real time stream analysis using kafka and spark.   
 Sever logs are read, analyzed and stored in real time using kafka, spark and yarn
 
-![test](https://www.dropbox.com/s/gecxkl2q119ydga/Screenshot%20%281%29.png?dl=0)
+![test](images/test.png)
 
 ### Tools and Programming Language Used ###
 Spark   
