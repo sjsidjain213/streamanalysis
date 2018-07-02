@@ -27,9 +27,24 @@
 	 https://www.geeksforgeeks.org/functional-interfaces-java/
 	 
 	 
-###Kafka References###
-https://kafka.apache.org/0110/documentation.html
+ ###Kafka References###
+ https://kafka.apache.org/0110/documentation.html
+
 
 	#how do kafka storage works#
 	https://thehoard.blog/how-kafkas-storage-internals-work-3a29b02e026 
  
+	#how do kafka works#
+	https://www.cloudkarafka.com/blog/2016-11-30-part1-kafka-for-beginners-what-is-apache-kafka.html
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

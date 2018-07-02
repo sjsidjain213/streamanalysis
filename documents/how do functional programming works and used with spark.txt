@@ -1,0 +1,71 @@
+What is Functional Programming
+	1. Functional programming languages are specially designed to handle symbolic computation and list 
+	processing applications. Functional programming is based on mathematical functions.
+	
+		Functional programming languages don’t support flow Controls like loop statements and conditional statements 
+		like If-Else and Switch Statements. They directly use the functions and functional calls.
+			
+		Like OOP, functional programming languages support popular concepts such as Abstraction, 
+		Encapsulation, Inheritance, and Polymorphism
+		
+	Idea is to make programming imutable to increase the parallalism capablity.
+	
+	
+Functional Programming in Java 8 using Lambda Functions:
+
+	Example: Java 7 Wordcount
+		JavaRDD lines = sc.textFile("hdfs://log.txt");
+		JavaRDD words = lines.flatMap(
+		  new FlatMapFunction() {
+		    public Iterable call(String line) {
+		      return Arrays.asList(line.split(" "));
+		    }
+		});
+		
+		JavaPairRDD ones = words.mapToPair(
+		  new PairFunction() {
+		    public Tuple2 call(String w) {
+		      return new Tuple2(w, 1);
+		    }
+		});
+		
+		JavaPairRDD counts = ones.reduceByKey(
+		  new Function2() {
+		    public Integer call(Integer i1, Integer i2) {
+		      return i1 + i2;
+		    }
+		});
+		
+		counts.saveAsTextFile("hdfs://counts.txt");
+	
+		Magic of Java 8, WordCount 
+		JavaRDD lines = sc.textFile("hdfs://log.txt");
+		JavaRDD words = lines.flatMap(line -> Arrays.asList(line.split(" ")));
+		JavaPairRDD counts = words.mapToPair(w -> new Tuple2(w, 1)).reduceByKey((x, y) -> x + y);
+		counts.saveAsTextFile("hdfs://counts.txt");
+				
+				
+
+1. Anonymous Inner Classes and their boiler plate:
+	Example
+		new PairFunction() {
+		    public Tuple2 call(String w) {
+		      return new Tuple2(w, 1);
+		    }
+		}
+	
+
+2. Comes Functional Interface to rescue:
+	https://hackernoon.com/finally-functional-programming-in-java-ad4d388fb92e
+	A functional interface is an interface that contains only one abstract method. 
+	They can have only one functionality to exhibit. From Java 8 onwards, lambda expressions can be used to
+	represent the instance of a functional interface. A functional interface can have any number of default methods. 
+	Runnable, ActionListener, Comparable are some of the examples of functional interfaces.
+
+	
+	
+
+		
+		
+		
+		

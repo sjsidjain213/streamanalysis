@@ -1,0 +1,67 @@
+Kakfa Working
+	1. Kafka is made up of producer and consumers
+
+Distribution
+The partitions of the log are distributed over the servers in the Kafka cluster with each server handling
+data and requests for a share of the partitions. Each partition is replicated across a configurable number 
+of servers for fault tolerance.	
+
+Producers
+Producers publish data to the topics of their choice. The producer is responsible for choosing which record to 
+assign to which partition within the topic. This can be done in a round-robin fashion simply to balance load or 
+it can be done according to some semantic partition function (say based on some key in the record). More on the 
+use of partitioning in a second!
+
+Consumers
+Consumers label themselves with a consumer group name, and each record published to a topic is delivered to one
+consumer instance within each subscribing consumer group. Consumer instances can be in separate processes or on 
+separate machines.
+	
+Kafka as a Messaging System
+How does Kafka's notion of streams compare to a traditional enterprise messaging system?
+Messaging traditionally has two models: queuing and publish-subscribe.
+	
+How do Kafka Stores Data:
+	Core abstraction of kafka is topic:
+	A topic is a category or feed name to which records are published. Topics in Kafka are always multi-subscriber; 
+	that is, a topic can have zero, one, or many consumers that subscribe to the data written to it.
+
+	1. Kafka Storage unit is partition
+	2. A partition is an ordered, immutable sequence of messages that are appended to. 
+	   A partition cannot be split across multiple brokers or even multiple disks.
+
+	Kafka Retention Policy:
+	You specify how much data or how long data should be retained, after which Kafka purges messages 
+	in-order—regardless of whether the message has been consumed.
+	
+	3. Kafka always need to purged some message stored in parition on a disk if the partition get too long in the
+	sequence then it will take time purge messages thus kafka introduce dividation of partition into segment
+	
+	4. When Kafka writes to a partition, it writes to a segment — the active segment. If the segment’s size limit is reached, a new segment is opened and that becomes the new active segment.
+	
+	Segment in Partition 
+	5. Segments are named by their base offset. The base offset of a segment is an offset greater than offsets 
+	in previous segments and less than or equal to offsets in that segment.
+	
+	On disk, a partition is a directory and each segment is an index file and a log file.
+	
+	6. Segment logs is the place where messages are stored, kafka store the message in the same format as it comes
+	from the producer and it need to forward to consumer
+	Each message is its value, offset, timestamp, key, message size, compression codec, checksum, 
+	and version of the message format.
+	The data format on disk is exactly the same as what the broker receives from the producer over the network 
+	and sends to its consumers. This allows Kafka to efficiently transfer data with zero copy.
+
+	1. Partitions are Kafka’s storage unit.
+	2. Partitions are split into segments.
+		Every Partition have one node acting as a leader in case leader goes down other node will come up as a leader.
+	3. Segments are two files: its log and index
+	4. Partition are replicated on different server
+	4. It's possible for the producer to attach a key to the messages and tell which partition the message should go to. 
+		All messages with the same key will arrive at the same partition.
+	5. Indexes map each offset to their message’s position in the log, they’re used to look up messages
+	6. Indexes store offsets relative to its segment’s base offset
+	7. Compressed message batches are wrapped together as the payload of a wrapper message
+	8. The data stored on disk is the same as what the broker receives from the producer over the network and sends to its consumers
+		Implementing Kafka in Golang	
+	
