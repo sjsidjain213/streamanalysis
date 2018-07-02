@@ -5,6 +5,7 @@ RDD is the main abstraction which spark provides. Second level of abstraction is
 	1. So What is RDD?
 	A Resilient Distributed Dataset (RDD), the basic abstraction in Spark, represents an immutable, partitioned collection
 	 of elements that can be operated on in parallel.
+![test](images/test.png)
 
 		Resilient
 		Meaning it provides fault tolerance through lineage graph. A lineage graph keeps a track of transformations 
